@@ -1,0 +1,52 @@
+body {
+    font-family: "Arial";
+    background-color: #000;
+    color: white;
+}
+
+  .chat-area, .home {
+    margin-top: 80px;
+  }
+  
+  .chat-area {
+    padding: 25px;
+    height: 400px;
+    overflow-y: scroll;
+  }
+  
+  .chat-area .chat-bubble {
+    background-color: #bbcafb;
+    padding: 25px;
+    border-radius: 4px;
+    max-width: 300px;
+    word-wrap: break-word;
+  }
+
+  
+  .chat-area .chat-bubble.current-user {
+    margin-left: auto;
+    background-color: #afd6a5;
+  }
+
+  .home{
+    text-align: center;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    background-color: #2e7d3b;
+    color: white;
+  }
+  
+   .btn-submit {
+    background-color: #2e7d3b;
+    color: white;
+  }
+
+  .gitBtn {
+    background-color: #602e7d;
+  }
+
+  .googleBtn{
+    background-color: #7d2e2e;
+  }

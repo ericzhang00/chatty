@@ -14,9 +14,12 @@ export default class Chat extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.myRef = React.createRef();
   }
+
   async componentDidMount() {
     this.setState({ readError: null });
+    const chatArea = this.myRef.current;
     try {
       db.ref("chats").on("value", snapshot => {
         let chats = [];
@@ -35,9 +38,11 @@ export default class Chat extends Component {
       content: event.target.value
     });
   }
+
   async handleSubmit(event) {
     event.preventDefault();
     this.setState({ writeError: null });
+    const chatArea = this.myRef.current;
     try {
       await db.ref("chats").push({
         content: this.state.content,
@@ -51,20 +56,20 @@ export default class Chat extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="chat-area" ref={this.myRef}>
         <div className="chats">
           {this.state.chats.map(chat => {
-            return <p key={chat.timestamp}>{chat.content}</p>
+            return <p className="chat-bubble current-user"key={chat.timestamp}>{chat.content}</p>
           })}
         </div>
-        {# message form #}
+        {/*# message form #*/}
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} value={this.state.content}></input>
           {this.state.error ? <p>{this.state.writeError}</p> : null}
-          <button type="submit">Send</button>
+          <button className="btn" type="submit">Send</button>
         </form>
         <div>
-          Login in as: <strong>{this.state.user.email}</strong>
+          Login as: <strong>{this.state.user.email}</strong>
         </div>
       </div>
     );
